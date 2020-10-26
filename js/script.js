@@ -1,11 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
   const elems = document.querySelectorAll('.sidenav');
   M.Sidenav.init(elems);
-  const select = document.getElementById('competitions');
-  M.FormSelect.init(select);
-  const tabs = document.querySelector('#tabs-swipe');
-  M.Tabs.init(tabs);
-  getCompetitions();
+  getCompetitionPage()
+
+
+  idb.open("mydatabase", 1, function(upgradeDb) {
+    if (!upgradeDb.objectStoreNames.contains("team")) {
+      const team = upgradeDb.createObjectStore("team", {keyPath: 'id'});
+      
+    }
+  });
+
+
+
+
+  document.querySelectorAll(".nav-item").forEach(item =>{
+    item.addEventListener("click", event =>{
+      event.preventDefault()
+      const sidenav = document.querySelector(".sidenav");
+      M.Sidenav.getInstance(sidenav).close();
+
+      const page = event.target.href.substr(event.target.origin.length+1)
+
+      switch (page) {
+        case "competitions.html":
+          getCompetitionPage()
+          break;
+
+        default:
+          getPage(page)
+          .then(response => {
+            document.getElementById("content").innerHTML = response;
+          })
+          .catch(error =>{
+            document.getElementById("content").innerHTML = error;
+          });
+          break;
+      };
+    });
+  });
 });
 
 
@@ -81,8 +114,6 @@ function getStanding(id=2021){
 function getMatch(id=2021){
   fetchData(`/v2/competitions/${id}/matches`)
   .then(data =>{
-    console.log(data)
-
     const match = document.getElementById("tab-match")
     match.innerText = `Match (${data.matches.length})`
 
@@ -144,7 +175,9 @@ function getMatch(id=2021){
   })
 }
 
-function getCompetitions(){
+function getCompetitions(url="competitions.html"){
+  
+
   fetchData("/v2/competitions/")
   .then(data => {
     let competitions = data.competitions.filter(data => data.currentSeason);
@@ -189,3 +222,34 @@ function fetchData(path, options=null){
     })
   })
 }
+
+function getPage(page="competitions.html"){
+  return new Promise((resolve, reject)=>{
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        resolve(xhttp.responseText);
+      }
+      if (xhttp.status === 404) {
+        reject("Something Went Wrong !")
+      }
+    };
+    xhttp.open("GET", `pages/${page}`, true);
+    xhttp.send();
+  });
+};
+
+function getCompetitionPage(){
+  getPage()
+  .then(response => {
+    document.getElementById("content").innerHTML = response;
+    const select = document.getElementById('competitions');
+    M.FormSelect.init(select);
+    const tabs = document.querySelector('#tabs-swipe');
+    M.Tabs.init(tabs);
+    getCompetitions();
+  })
+  .catch(error =>{
+    document.getElementById("content").innerHTML = error;
+  });
+};
