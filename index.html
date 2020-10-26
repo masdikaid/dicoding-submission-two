@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Football Maniacs</title>
 </head>
 <body class="amber lighten-5">
@@ -12,7 +13,7 @@
             <div class="nav-wrapper yellow darken-3">
             <img src="assets/Icon.png" alt="Icon Soccer Maniacs" class="responsive-img left hide-on-med-and-down">
               <a href="#" class="brand-logo">Soccer Maniacs</a>
-              <a href="#" data-target="mobile-demo" class="sidenav-trigger right">menu</a>
+              <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
               <ul id="nav" class="right hide-on-med-and-down">
                 <li><a href="#competitions">Competitions</a></li>
                 <li><a href="#fav-teams">My Teams</a></li>
@@ -37,11 +38,30 @@
             <div class="card-content">
                 <h4>Competitions</h4>
                 <div class="input-field col s12">
-                    <select>
+                    <select id="competitions">
                     </select>
                 </div>
-
-
+                <h4 id="standing-title" class="center">Loading name ...</h4>
+                <p id="standing-area" class="center">loading area ...</p>
+                <p id="standing-date" class="center">loading date ...</p>
+            </div>
+            <ul id="tabs-swipe" class="tabs">
+                <li class="tab col s6"><a id="tab-standing" class="active" href="#standing">Standing</a></li>
+                <li class="tab col s6"><a id="tab-match" href="#match">Match</a></li>
+            </ul>
+            <div id="standing" class="col s12 tab-item">
+                <div class="card">
+                    <div class="card-content">
+                        <ul  id="ul-team" class="collection row">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="match" class="col s12 tab-item">
+                <div class="card">
+                    <div id="ul-match" class="container card-content">
+                    </div>
+                </div>
             </div>
         </div>
     </section>
