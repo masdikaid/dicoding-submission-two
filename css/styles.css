@@ -22,6 +22,10 @@
     position: relative;
 }
 
+#ul-fav-team li {
+    position: relative;
+}
+
 .fav-team {
     position: absolute;
     top: 10px;
