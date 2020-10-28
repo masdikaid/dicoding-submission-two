@@ -1,3 +1,16 @@
+function permissionHandler() {
+    switch (Notification.permission) {
+      case "default":
+        Notification.requestPermission()
+        break;
+      case "granted":
+        break;
+      default:
+        console.warn("Notification denied, cannot show your notification !")
+        break;
+    };
+};
+
 function navHandler(){
     document.querySelectorAll(".nav-item").forEach(item =>{
         item.addEventListener("click", event =>{
