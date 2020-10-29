@@ -5,7 +5,7 @@ function fetchData(path, options=null){
       optionsdata = { ...optionsdata, ...options}
     }
     return new Promise((resolve, reject) =>{
-      fetch(`http://api.football-data.org${path}`, optionsdata)
+      fetch(`https://api.football-data.org${path}`, optionsdata)
       .then(response => {
         resolve(response.json())
       })
