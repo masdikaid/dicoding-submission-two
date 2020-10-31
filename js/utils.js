@@ -68,13 +68,14 @@ function getCompetitions(){
         competitions.forEach((competition) => {
         const select = document.querySelector("select");
         const option = document.createElement("option");
-        const text = `${competition.name} ${new Date(competition.currentSeason.endDate) < new Date() ? '<span class="white-text badge yellow darken-4">Finished</span>' : '<span class="badge">'+new Date(competition.currentSeason.startDate).getFullYear()+'</span>' }`;
+        let text = `${competition.name} ${new Date(competition.currentSeason.endDate) < new Date() ? '<span class="white-text badge yellow darken-4">Finished</span>' : '<span class="badge">'+new Date(competition.currentSeason.startDate).getFullYear()+'</span>' }`;
         option.setAttribute("value", competition.id);
         if (competition.id === 2021){
             option.setAttribute("selected",true)
         };
         if (![2001, 2002, 2003, 2014, 2015, 2021].includes(competition.id)){
             option.setAttribute("disabled",true)
+            text = `${competition.name} '<span class="white-text badge red darken-4">Disable</span>' ${new Date(competition.currentSeason.endDate) < new Date() ? '<span class="white-text badge yellow darken-4">Finished</span>' : '<span class="badge">'+new Date(competition.currentSeason.startDate).getFullYear()+'</span>' }`;
         };
         option.innerHTML = text;
         select.appendChild(option);
