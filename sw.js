@@ -16,7 +16,21 @@ const STATIC = [
   "/js/idbapi.js",
   "/js/fetchapi.js",
   "/js/utils.js",
-  "/assets/icon.png"
+  "/assets/android-icon-192x192-dunplab-manifest-10631.png",
+  "/assets/apple-icon-180x180-dunplab-manifest-10631.png",
+  "/assets/apple-icon-152x152-dunplab-manifest-10631.png",
+  "/assets/apple-icon-144x144-dunplab-manifest-10631.png",
+  "/assets/apple-icon-120x120-dunplab-manifest-10631.png",
+  "/assets/apple-icon-114x114-dunplab-manifest-10631.png",
+  "/assets/favicon-96x96-dunplab-manifest-10631.png",
+  "/assets/apple-icon-76x76-dunplab-manifest-10631.png",
+  "/assets/apple-icon-72x72-dunplab-manifest-10631.png",
+  "/assets/apple-icon-60x60-dunplab-manifest-10631.png",
+  "/assets/apple-icon-57x57-dunplab-manifest-10631.png",
+  "/assets/favicon-32x32-dunplab-manifest-10631.png",
+  "/assets/favicon-16x16-dunplab-manifest-10631.png",
+  "https://fonts.googleapis.com/icon?family=Material+Icons",
+  "https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
 ];
 
 
