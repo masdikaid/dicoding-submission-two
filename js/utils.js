@@ -290,38 +290,44 @@ function favTeams(){
     getAllFavTeams()
     .then(res => {
         const teamelement = document.getElementById("ul-fav-team")
-        teamelement.innerHTML = ""
-        res.forEach( team =>{
-            const element = document.createElement("li")
-            element.setAttribute("class", "collection-item row")
-            element.innerHTML = `
-            <img class="standing-team-img responsive-img col s12 m3 l2" src="${team.icon}" alt="${team.name}">
-            <div class="col s12 m9 l10 row">
-                <h5 class="col s12 center">${team.name}</h5>
-                <div class="col s4">
-                    <h6 class="center">Win</h6>
-                    <p class="center">${team.matchs.win}</p>
+        teamelement.innerHTML = "<p>Memuat ...</p>"
+        if (res.length > 0){
+            teamelement.innerHTML = ""
+            res.forEach( team =>{
+                const element = document.createElement("li")
+                element.setAttribute("class", "collection-item row")
+                element.innerHTML = `
+                <img class="standing-team-img responsive-img col s12 m3 l2" src="${team.icon}" alt="${team.name}">
+                <div class="col s12 m9 l10 row">
+                    <h5 class="col s12 center">${team.name}</h5>
+                    <div class="col s4">
+                        <h6 class="center">Win</h6>
+                        <p class="center">${team.matchs.win}</p>
+                    </div>
+                    <div class="col s4">
+                        <h6 class="center">Lost</h6>
+                        <p class="center">${team.matchs.lost}</p>
+                    </div>
+                    <div class="col s4">
+                        <h6 class="center">Draw</h6>
+                        <p class="center">${team.matchs.draw}</p>
+                    </div>
+                    <div class="col s4">
+                        <a class="fav-team btn-floating btn-medium waves-effect waves-light grey lighten-4">${"<i id='"+team.id+"' class='material-icons red-text lighten-4'>delete_forever</i>"}</a>
+                    </div>
                 </div>
-                <div class="col s4">
-                    <h6 class="center">Lost</h6>
-                    <p class="center">${team.matchs.lost}</p>
-                </div>
-                <div class="col s4">
-                    <h6 class="center">Draw</h6>
-                    <p class="center">${team.matchs.draw}</p>
-                </div>
-                <div class="col s4">
-                    <a class="fav-team btn-floating btn-medium waves-effect waves-light grey lighten-4">${"<i id='"+team.id+"' class='material-icons red-text lighten-4'>delete_forever</i>"}</a>
-                </div>
-            </div>
-            `
-            teamelement.appendChild(element);
-        });
+                `
+                teamelement.appendChild(element);
+            });
+        }else{
+            teamelement.innerHTML = "Data Kosong"
+        }
         document.querySelectorAll(".fav-team").forEach(elem =>{
             elem.addEventListener("click", event =>{
                 deleteFavTeam(event.target.id)
                 .then( () =>{
                     event.path[4].remove()
+                    favTeams()
                 });
             });
         }); 
@@ -332,41 +338,47 @@ function favMatchs(){
     getAllFavMatchs()
     .then(res => {
         const matchelement = document.getElementById("ul-fav-match")
-        matchelement.innerHTML = ""
-        res.forEach(match =>{
-            const element = document.createElement("div")
-            element.setAttribute("class", "row match-item card")
-            element.innerHTML = `
-                <div class="card-title row col s12">
-                <div class="col s12 l5">
-                    <p class="center">(Away)</p>
-                    <h5 class="center">${match.awayteam}</h5>
-                </div>
-                <h5 class="center col s12 l2 material-icons">compare_arrows</h5>
-                <div class="col s12 l5">
-                    <p class="center">(Home)</p>
-                    <h5 class="center">${match.hometeam}</h5>
-                </div>
-                </div>
-                <div class="col s12 card-content">
-                <h6 class="yellow darken-2 white-text center">
-                    ${match.status}
-                </h6>
-                <p class="center">
-                    ${new Date(match.date).toUTCString()}
-                </p>
-                <div class="col s4">
-                    <a class="fav-match btn-floating btn-medium waves-effect waves-light grey lighten-4"><i id="${match.id}" class="material-icons red-text lighten-4">delete_forever</i></a>
-                </div>
-                </div>
-            `
-            matchelement.appendChild(element);
-        });
+        matchelement.innerHTML = "<p>Memuat ...</p>"
+        if (res.length > 0){
+            matchelement.innerHTML = ""
+            res.forEach(match =>{
+                const element = document.createElement("div")
+                element.setAttribute("class", "row match-item card")
+                element.innerHTML = `
+                    <div class="card-title row col s12">
+                    <div class="col s12 l5">
+                        <p class="center">(Away)</p>
+                        <h5 class="center">${match.awayteam}</h5>
+                    </div>
+                    <h5 class="center col s12 l2 material-icons">compare_arrows</h5>
+                    <div class="col s12 l5">
+                        <p class="center">(Home)</p>
+                        <h5 class="center">${match.hometeam}</h5>
+                    </div>
+                    </div>
+                    <div class="col s12 card-content">
+                    <h6 class="yellow darken-2 white-text center">
+                        ${match.status}
+                    </h6>
+                    <p class="center">
+                        ${new Date(match.date).toUTCString()}
+                    </p>
+                    <div class="col s4">
+                        <a class="fav-match btn-floating btn-medium waves-effect waves-light grey lighten-4"><i id="${match.id}" class="material-icons red-text lighten-4">delete_forever</i></a>
+                    </div>
+                    </div>
+                `
+                matchelement.appendChild(element);
+            });
+        }else{
+            matchelement.innerHTML = "Data Kosong"
+        }
         document.querySelectorAll(".fav-match").forEach(elem =>{
             elem.addEventListener("click", event =>{
                 deleteFavMatch(event.target.id)
                 .then( () => {
                     event.path[4].remove()
+                    favMatchs()
                 });
             });
         }); 
