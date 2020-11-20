@@ -30,6 +30,7 @@ workbox.precaching.precacheAndRoute([
   { url: "/assets/apple-icon-57x57-dunplab-manifest-10631.png", revision: '2' },
   { url: "/assets/favicon-32x32-dunplab-manifest-10631.png", revision: '2' },
   { url: "/assets/favicon-16x16-dunplab-manifest-10631.png", revision: '2' },
+  { url: "/assets/Icon.png", revision: '2' },
   { url: "https://fonts.googleapis.com/icon?family=Material+Icons", revision: '2' },
   { url: "https://fonts.gstatic.com/s/materialicons/v55/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2", revision: '2' },
   { url: "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js", revision: '2' }
