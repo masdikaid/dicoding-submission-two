@@ -85,6 +85,12 @@
     "type": "image/png",
     "purpose": "any maskable",
     "sizes": "16x16"
+   },
+   {
+    "src": "/assets/Icon.png",
+    "type": "image/png",
+    "purpose": "any maskable",
+    "sizes": "512x512"
    }
   ]
  }
